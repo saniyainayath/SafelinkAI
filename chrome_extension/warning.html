@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚠️ Warning: Malicious Site Detected</title>
+    <style>
+        body {
+            font-family: 'Fira Mono', 'Consolas', 'Menlo', monospace;
+            text-align: center;
+            background: linear-gradient(135deg, #0f2027 0%, #2c5364 100%);
+            color: #00ff99;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .warning-container {
+            background: rgba(10, 20, 30, 0.97);
+            border-radius: 18px;
+            box-shadow: 0 0 32px #00ff9955;
+            padding: 36px 28px 28px 28px;
+            max-width: 400px;
+            margin: 32px auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .warning {
+            color: #ff0055;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 18px;
+            text-shadow: 0 0 10px #ff0055, 0 0 2px #fff;
+            letter-spacing: 1px;
+        }
+        .warning-desc {
+            color: #00ff99;
+            font-size: 1.1rem;
+            margin-bottom: 28px;
+            text-shadow: 0 0 6px #00ff99;
+        }
+        .safe-btn {
+            background: linear-gradient(90deg, #00ff99 0%, #00c3ff 100%);
+            color: #111;
+            font-weight: bold;
+            padding: 12px 32px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 0 12px #00ff99;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+        .safe-btn:hover {
+            background: linear-gradient(90deg, #00c3ff 0%, #00ff99 100%);
+            color: #fff;
+        }
+        @media (max-width: 500px) {
+            .warning-container {
+                padding: 18px 6px 16px 6px;
+                max-width: 98vw;
+            }
+            .warning { font-size: 1.1rem; }
+            .warning-desc { font-size: 1rem; }
+            .safe-btn { font-size: 1rem; padding: 10px 10px; }
+        }
+    </style>
+    <script src="scripts/warning.js"></script>
+</head>
+<body>
+    <div class="warning-container">
+        <h1 class="warning">🚨 WARNING: Malicious Site Detected!</h1>
+        <p class="warning-desc">For your safety, this page has been blocked by <b>SafeLink AI</b>.<br>Please close this tab and avoid entering any information.</p>
+        <button class="safe-btn" id="closeBtn">Close This Tab</button>
+    </div>
+</body>
+</html>
