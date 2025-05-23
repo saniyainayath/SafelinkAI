@@ -43,6 +43,6 @@ This tool is designed to **combat phishing websites**, which trick users into en
 
 ```bash
 git clone https://github.com/yourusername/SafelinkAI.git
-cd suspicious-url-detector
+cd SafeLinkAI
 pip install -r requirements.txt
 python app.py
