@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚠️ Warning: Malicious Site Detected</title>
+    <style>
+        body {
+            font-family: 'Fira Mono', 'Consolas', 'Menlo', monospace;
+            text-align: center;
+            background: linear-gradient(135deg, #0f2027 0%, #2c5364 100%);
+            color: #00ff99;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .warning-container {
+            background: rgba(10, 20, 30, 0.97);
+            border-radius: 18px;
+            box-shadow: 0 0 32px #00ff9955;
+            padding: 36px 28px 28px 28px;
+            max-width: 400px;
+            margin: 32px auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .warning {
+            color: #ff0055;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 18px;
+            text-shadow: 0 0 10px #ff0055, 0 0 2px #fff;
+            letter-spacing: 1px;
+        }
+        .warning-desc {
+            color: #00ff99;
+            font-size: 1.1rem;
+            margin-bottom: 28px;
+            text-shadow: 0 0 6px #00ff99;
+        }
+        .button-row {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            margin-top: 16px;
+            width: 100%;
+        }
+        .safe-btn, .proceed-btn {
+            background: #23272f;
+            color: #fff;
+            font-weight: 600;
+            padding: 10px 28px;
+            font-size: 1.05rem;
+            border: 1.5px solid #444;
+            border-radius: 7px;
+            box-shadow: 0 2px 8px #0002;
+            cursor: pointer;
+            transition: 
+                background 0.18s,
+                color 0.18s,
+                border-color 0.18s,
+                box-shadow 0.18s;
+            outline: none;
+            letter-spacing: 0.5px;
+        }
+        .safe-btn:hover, .proceed-btn:hover {
+            background: #111c22;
+            color: #00c3ff;
+            border-color: #00c3ff;
+            box-shadow: 0 4px 16px #00c3ff33;
+        }
+        .proceed-btn {
+            color: #ffcc00;
+            border-color: #ffcc00;
+        }
+        .proceed-btn:hover {
+            background: #232000;
+            color: #fff;
+            border-color: #ffcc00;
+            box-shadow: 0 4px 16px #ffcc0033;
+        }
+        @media (max-width: 500px) {
+            .warning-container {
+                padding: 18px 6px 16px 6px;
+                max-width: 98vw;
+            }
+            .warning { font-size: 1.1rem; }
+            .warning-desc { font-size: 1rem; }
+            .safe-btn { font-size: 1rem; padding: 10px 10px; }
+        }
+    </style>
+    <script src="scripts/warning.js"></script>
+</head>
+<body>
+    <div class="warning-container">
+        <h1 class="warning">🚨 WARNING: Malicious Site Detected!</h1>
+        <p class="warning-desc">
+            For your safety, this page has been blocked by <b>SafeLink AI</b>.<br>
+            Please close this tab and avoid entering any information.<br>
+        </p>
+        <div class="button-row">
+            <button class="safe-btn" id="closeBtn">Close This Tab</button>
+            <button class="safe-btn proceed-btn" id="proceedBtn">Proceed Anyway</button>
+        </div>
+    </div>
+</body>
+</html>

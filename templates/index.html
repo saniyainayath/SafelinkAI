@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block title %}SafeLink AI{% endblock %}
+
+{% block head %}
+<link rel="icon" type="image/png" href="{{ url_for('static', filename='sheild.png') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div id="main-content" style="margin-left: 0;">
+        <div class="home-content">
+            <h1 class="title">SafeLink AI</h1>
+            <p class="subtitle">Protect yourself from phishing and malicious links!</p>
+
+            <!-- Tab Buttons -->
+            <div class="tab-buttons" style="text-align:center; margin: 32px 0 16px 0;">
+                <button id="tab-link-btn" class="tab-btn active">Check URL</button>
+                <button id="tab-message-btn" class="tab-btn">Check Message</button>
+            </div>
+            <!-- Tab 1: URL Checker -->
+            <div id="tab-link" class="tab-content" style="display:block;">
+                <div class="scanner-box">
+                    <form id="urlForm">
+                        <input type="text" id="url-input" placeholder="Enter URL to check" required autocomplete="off">
+                        <button type="submit" id="check-btn">Check</button>
+                    </form>
+                    <div id="loading-bar-container" style="display: none;">
+                        <div id="loading-bar"></div>
+                    </div>
+                    <div id="result-container" style="display: none;">
+                        <div id="risk-level-box" class="risk-level-box" style="display:none;"></div>
+                        <p id="result-message" class="result-message"></p>
+                        <div id="ml-result"></div>
+                        <div id="gsb-result"></div>
+                        <div id="vt-result" style="display: none;">
+                            <h4>VirusTotal</h4>
+                            <canvas id="vt-piechart" width="220" height="220"></canvas>
+                            <div id="vt-legend"></div>
+                        </div>
+                        <div id="whois-info"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Tab 2: Message Checker -->
+            <div id="tab-message" class="tab-content" style="display:none;">
+                <div class="scanner-box">
+                    <form id="messageForm">
+                        <textarea id="message-input" name="message" placeholder="Paste message or email text" required style="width:100%;height:90px;"></textarea>
+                        <button type="submit" id="check-message-btn">Check Message</button>
+                    </form>
+                    {% if show_message_result %}
+                    <div id="message-result" style="margin-top:18px;">
+                        <h3>Message Result</h3>
+                        <p><b>Suspicious:</b> {{ message_result.suspicious }}</p>
+                        <p><b>Reason:</b> {{ message_result.reason }}</p>
+                        <p><b>Links found:</b> {{ message_result.links|join(', ') }}</p>
+                    </div>
+                    {% else %}
+                    <div id="message-result" style="margin-top:18px;"></div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{{ url_for('static', filename='scripts.js') }}"></script>
+{% endblock %}

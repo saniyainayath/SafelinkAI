@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeLink AI</title>
+    <link rel="stylesheet" href="css/popup.css"> 
+</head>
+<body class="dark-mode">
+  <div class="popup-container">
+    <h3 class="title">Is this Link Safe? <span class="brand">SafeLink AI</span></h3>
+    <div id="url-display" class="url-display"></div>
+    <button id="check-btn" disabled>Check URL</button>
+    <div id="loading-bar-container" style="display: none;">
+      <div id="loading-bar"></div>
+    </div>
+    <div id="risk-level-box" class="risk-level-box" style="display:none;"></div>
+    <div id="result-message" aria-live="polite"></div>
+  </div>
+  <script src="scripts/popup.js"></script>
+</body>
+</html>

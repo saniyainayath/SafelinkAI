@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+{% block title %}Security Hub{% endblock %}
+{% block content %}
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: url("/static/bg_img2.webp") no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      min-height: 100vh;
+    }
+
+    .safedu-container {
+      background: rgba(0, 0, 0, 0.75);
+      padding: 24px 18px;
+      margin: 12px auto 0 auto;  /* Less top margin */
+      border-radius: 16px;
+      max-width: 850px;
+      width: 100%;
+      box-shadow: 0 0 18px rgba(0, 255, 0, 0.2);
+    }
+
+    .safedu-container h1 {
+      margin-top: 0;
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+      font-weight: 700;
+      font-size: 1.8em;
+      font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+      animation: softGlow 2.5s ease-in-out infinite alternate;
+      text-shadow:
+        0 0 8px #00ff88,
+        0 0 16px #00ffaa,
+        0 0 2px #fff;
+    }
+
+    @keyframes softGlow {
+      from {
+        text-shadow: 0 0 8px #00ff88, 0 0 16px #00ffaa, 0 0 2px #fff;
+      }
+      to {
+        text-shadow: 0 0 16px #00ff88, 0 0 24px #00ffaa, 0 0 4px #fff;
+      }
+    }
+
+    #news-feed {
+      margin-bottom: 32px;
+    }
+
+    .rss-article {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 16px;
+      margin-bottom: 16px;
+      border-radius: 10px;
+      position: relative;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .rss-article:hover {
+      transform: translateY(-6px) scale(1.01);
+      box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+    }
+
+    .rss-article a {
+      color: #00ff99;
+      font-weight: 600;
+      font-size: 1.05em;
+      text-decoration: none;
+    }
+
+    .rss-article a:hover {
+      text-decoration: underline;
+    }
+
+    .rss-article .text-muted {
+      color: #aaa;
+      font-size: 0.9em;
+      margin: 6px 0;
+    }
+
+    #quick-tips {
+      background: rgba(255, 255, 255, 0.06);
+      border-left: 4px solid #00ff99;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    #quick-tips ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    #quick-tips li {
+      margin: 10px 0;
+      font-size: 1.05em;
+    }
+
+    @media (max-width: 600px) {
+      .safedu-container {
+        padding: 20px 8px;
+      }
+    }
+  </style>
+  <div class="safedu-container">
+    <header>
+      <h1>Security Hub</h1>
+      <p style="text-align:center;">Stay informed and protect yourself from online threats. Here are the latest cybersecurity headlines and tips!</p>
+    </header>
+
+    <section id="news-feed">
+      <h2>Cybersecurity Headlines</h2>
+      <div id="rss-articles">
+        <p>Loading news...</p>
+      </div>
+    </section>
+
+    <section id="quick-tips">
+      <h2>Quick Tips for Safe Browsing</h2>
+      <ul>
+        <li>✅ Always check for HTTPS before entering sensitive info.</li>
+        <li>⚠️ Hover over links to preview the real URL before clicking.</li>
+        <li>🧠 Be skeptical of urgent messages and pop-ups.</li>
+        <li>🔒 Use browser security extensions and keep them updated.</li>
+        <li>🚫 Avoid clicking on shortened or suspicious links.</li>
+      </ul>
+    </section>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      fetch('/rss_feed')
+        .then(response => response.json())
+        .then(data => {
+          const container = document.getElementById('rss-articles');
+          if (data.articles && data.articles.length) {
+            container.innerHTML = data.articles.map(article => `
+              <div class="rss-article">
+                <a href="${article.link}" target="_blank">${article.title}</a>
+                <div class="text-muted">${article.published}</div>
+                <div>${article.summary}</div>
+              </div>
+            `).join('');
+          } else {
+            container.innerHTML = "<p>No news available.</p>";
+          }
+        })
+        .catch(err => {
+          document.getElementById('rss-articles').innerHTML = "<p>Could not load news.</p>";
+          console.error("RSS fetch error:", err);
+        });
+    });
+  </script>
+{% endblock %}
