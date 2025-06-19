@@ -1,4 +1,3 @@
-
 import re
 from urllib.parse import urlparse
 from tld import get_tld
@@ -30,11 +29,6 @@ def abnormal_url(url):
     else:
         # print 'No matching pattern found'
         return 0
-#pip install googlesearch-python
-from googlesearch import search
-def google_index(url):
-    site = search(url, 5)
-    return 1 if site else 0
 def count_dot(url):
     count_dot = url.count('.')
     return count_dot
